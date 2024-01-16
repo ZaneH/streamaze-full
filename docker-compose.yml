@@ -1,0 +1,46 @@
+version: "3"
+services:
+    streamaze-api:
+        build: ./streamaze-api
+        ports:
+            - "4000:4000"
+        container_name: streamaze-api
+        restart: always
+        depends_on:
+            - streamaze-db
+        env_file: ./streamaze-api/.env
+    streamaze-db:
+        image: postgres:latest
+        ports:
+            - "5432:5432"
+        container_name: streamaze-db
+        restart: always
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_DB: streamaze_prod
+    streamaze-donation-service:
+        build: ./streamaze-donation-service
+        ports:
+            - "8080:8080"
+        container_name: streamaze-donation-service
+        restart: always
+        depends_on:
+            - streamaze-db
+            - streamaze-api
+    exchange-rate-api:
+        build: ./exchange-rate-api
+        ports:
+            - "8000:4000"
+        container_name: exchange-rate-api
+        restart: always
+    streamaze-ui:
+        build: ./streamaze-ui
+        ports:
+            - "3000:80"
+        container_name: streamaze-ui
+        restart: always
+        depends_on:
+            - streamaze-api
+            - streamaze-donation-service
+            - exchange-rate-api

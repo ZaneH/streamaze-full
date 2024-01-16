@@ -1,0 +1,15 @@
+[submodule "streamaze-api"]
+	path = streamaze-api
+	url = https://github.com/ZaneH/streamaze-api.git
+	branch = modified
+[submodule "streamaze-ui"]
+	path = streamaze-ui
+	url = https://github.com/ZaneH/streamaze-ui.git
+	branch = modified
+[submodule "streamaze-donation-service"]
+	path = streamaze-donation-service
+	url = https://github.com/ZaneH/streamaze-donation-service.git
+	branch = modified
+[submodule "exchange-rate-api"]
+	path = exchange-rate-api
+	url = https://github.com/ZaneH/exchange-rate-api.git
